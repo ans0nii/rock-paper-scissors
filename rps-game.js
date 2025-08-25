@@ -18,33 +18,55 @@ ONCE total point of 3 is reached display winner and stop.*/
 const rock = 0;
 const paper = 1;
 const scissors = 2;
+let humanScore = 0;
+let computerScore = 0;
+let userChoiceNum;
 
 function getPlayersChoice() {
   let input = prompt("Please enter rock, paper or scissors");
-  return input;
+  return input.toUpperCase();
 }
-
-let userPlayed = getPlayersChoice();
-if (userPlayed === "rock") {
-  console.log("You played rock");
-} else if (userPlayed === "scissors") {
-  console.log("You played scissors");
-} else if (userPlayed === "paper") {
-  console.log("You played paper");
-}
-
 function getComputerChoice() {
   return Math.floor(Math.random() * 3);
 }
 
-let computerChoice = getComputerChoice();
+while (humanScore < 3 && computerScore < 3) {
+  let userPlayed = getPlayersChoice();
+  if (userPlayed === "ROCK") {
+    console.log("You played rock");
+  } else if (userPlayed === "SCISSORS") {
+    console.log("You played scissors");
+  } else if (userPlayed === "PAPER") {
+    console.log("You played paper");
+  }
 
-if (computerChoice === rock) {
-  console.log("computer played rock");
-} else if (computerChoice === paper) {
-  console.log("computer played paper");
-} else if (computerChoice === scissors) {
-  console.log("Computer played scissors");
+  let computerPlayed = getComputerChoice();
+
+  if (computerPlayed === rock) {
+    console.log("computer played rock");
+  } else if (computerPlayed === paper) {
+    console.log("computer played paper");
+  } else if (computerPlayed === scissors) {
+    console.log("Computer played scissors");
+  }
+
+  const choices = { ROCK: 0, PAPER: 1, SCISSORS: 2 };
+  let userChoiceNum = choices[userPlayed];
+
+  const result = (userChoiceNum - computerPlayed + 3) % 3;
+
+  if (result === 0) {
+    console.log(
+      `It's a draw!. The score remains ${humanScore}:${computerScore}`
+    );
+  } else if (result === 1) {
+    humanScore++;
+    console.log(`user won, the score is ${humanScore}:${computerScore}`);
+  } else {
+    computerScore++;
+    console.log(`computer won, the score is ${humanScore}:${computerScore}`);
+  }
+
+  function playRound(computerPlayed, userPlayed) {}
 }
-
-
+console.log("Game Over!");
