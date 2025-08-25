@@ -22,8 +22,8 @@ In this project I will be creating a Rock Paper Scissors game using JavaScript a
 -Or right click and press inspect
 
 -Navigate to "console" tab
--Type 'playgame()' and press enter.
--Follow instructions and BEAT the computer in a best of 3
+-Type 'startGame()' and press enter
+-Follow instructions and BEAT the computer in a first to 3
 -Stuck or wanna play again? Hit F5
 
 

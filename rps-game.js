@@ -28,9 +28,9 @@ function playGame() {
   let computerPlayed = getComputerChoice();
   
   if (computerPlayed === rock) {
-    console.log("computer played rock");
+    console.log("Computer played rock");
   } else if (computerPlayed === paper) {
-    console.log("computer played paper");
+    console.log("Computer played paper");
   } else if (computerPlayed === scissors) {
     console.log("Computer played scissors");
   }
@@ -46,10 +46,10 @@ function playGame() {
     );
   } else if (result === 1) {
     humanScore++;
-    console.log(`user won, the score is ${humanScore}:${computerScore}`);
+    console.log(`User won, the score is ${humanScore}:${computerScore}`);
   } else {
     computerScore++;
-    console.log(`computer won, the score is ${humanScore}:${computerScore}`);
+    console.log(`Computer won, the score is ${humanScore}:${computerScore}`);
   }
 }
  function startGame(){
