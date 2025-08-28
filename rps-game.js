@@ -1,4 +1,3 @@
-
 const rock = 0;
 const paper = 1;
 const scissors = 2;
@@ -6,17 +5,13 @@ let humanScore = 0;
 let computerScore = 0;
 let userChoiceNum;
 
-function getPlayersChoice() {
-  let input = prompt("Please enter rock, paper or scissors");
-  return input.toUpperCase();
-}
 function getComputerChoice() {
   return Math.floor(Math.random() * 3);
 }
 
-function playGame() {
-  let userPlayed = getPlayersChoice();
-  
+function playGame(userPlayed) {
+  userPlayed = userPlayed.toUpperCase();
+
   if (userPlayed === "ROCK") {
     console.log("You played rock");
   } else if (userPlayed === "SCISSORS") {
@@ -24,9 +19,9 @@ function playGame() {
   } else if (userPlayed === "PAPER") {
     console.log("You played paper");
   }
-  
+
   let computerPlayed = getComputerChoice();
-  
+
   if (computerPlayed === rock) {
     console.log("Computer played rock");
   } else if (computerPlayed === paper) {
@@ -34,12 +29,12 @@ function playGame() {
   } else if (computerPlayed === scissors) {
     console.log("Computer played scissors");
   }
-  
+
   const choices = { ROCK: 0, PAPER: 1, SCISSORS: 2 };
-  let userChoiceNum = choices[userPlayed];
-  
+  userChoiceNum = choices[userPlayed];
+
   const result = (userChoiceNum - computerPlayed + 3) % 3;
-  
+
   if (result === 0) {
     console.log(
       `It's a draw!. The score remains ${humanScore}:${computerScore}`
@@ -52,9 +47,19 @@ function playGame() {
     console.log(`Computer won, the score is ${humanScore}:${computerScore}`);
   }
 }
- function startGame(){
-while (humanScore < 3 && computerScore < 3) {
-  playGame();
-}
-console.log("Game Over!");
- }
+
+const buttons = document.querySelectorAll(".user-played button");
+let gameOver = false;
+
+buttons.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    if (gameOver) return;
+    const playerChoice = e.target.dataset.choice;
+    playGame(playerChoice);
+    if (humanScore === 3 || computerScore === 3) {
+      console.log("Game Over!");
+      gameOver = true;
+    }
+  });
+});
+
