@@ -4,6 +4,8 @@ const scissors = 2;
 let humanScore = 0;
 let computerScore = 0;
 let userChoiceNum;
+let gameOver = false;
+const resultsDiv = document.getElementById("results");
 
 function getComputerChoice() {
   return Math.floor(Math.random() * 3);
@@ -30,6 +32,12 @@ function playGame(userPlayed) {
     console.log("Computer played scissors");
   }
 
+  const computerChoiceMap = new Map();
+  computerChoiceMap.set(0, "ROCK");
+  computerChoiceMap.set(1, "PAPER");
+  computerChoiceMap.set(2, "SCISSORS");
+  const computerPlayedStr = computerChoiceMap.get(computerPlayed);
+
   const choices = { ROCK: 0, PAPER: 1, SCISSORS: 2 };
   userChoiceNum = choices[userPlayed];
 
@@ -46,11 +54,13 @@ function playGame(userPlayed) {
     computerScore++;
     console.log(`Computer won, the score is ${humanScore}:${computerScore}`);
   }
+  const p = document.createElement("p");
+  p.textContent = `You played ${userPlayed} , Computer played ${computerPlayedStr}
+  | ${humanScore} : ${computerScore}`;
+  resultsDiv.appendChild(p);
 }
 
 const buttons = document.querySelectorAll(".user-played button");
-let gameOver = false;
-
 buttons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     if (gameOver) return;
@@ -59,7 +69,9 @@ buttons.forEach((btn) => {
     if (humanScore === 3 || computerScore === 3) {
       console.log("Game Over!");
       gameOver = true;
+      const p2 = document.createElement("p");
+      (p2.textContent = `Game Over!`);
+      resultsDiv.appendChild(p2);
     }
   });
 });
-
